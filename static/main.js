@@ -18,7 +18,7 @@ if (!parameters.data || !parameters.mac || !parameters.orientation) {
     throw new Error('Missing required query parameters.');
 }
 
-fetch(`https://api.kneemund.de/v1/url?d=${parameters.data}&m=${parameters.mac}`)
+fetch(`https://api.kneemund.de/juxtapose/url?d=${parameters.data}&m=${parameters.mac}`)
     .then((data) => data.json())
     .then((data) => {
         beforeImage.src = data.left_image_url;
