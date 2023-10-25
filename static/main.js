@@ -15,10 +15,12 @@ const parameters = {
 };
 
 function displayErrorMessage(error) {
+  const errorMessage = document.querySelector(".error-message");
+  if (errorMessage.hidden === false) return;
+
   const imageComparison = document.querySelector(".image-comparison");
   imageComparison.remove();
 
-  const errorMessage = document.querySelector(".error-message");
   errorMessage.textContent = error;
   errorMessage.hidden = false;
 
@@ -33,17 +35,19 @@ fetch(
   `https://api.kneemund.de/juxtapose/url?d=${parameters.data}&m=${parameters.mac}`
 )
   .then((data) => {
-	switch (data.status) {
-		case 400:
-			displayErrorMessage("The URL is invalid.");
-			break;
-		case 404:
-			displayErrorMessage("The juxtapose message was deleted and the images expired.");
-			break;
-		case 500:
-			displayErrorMessage("The API request could not be processed.");
-			break;
-	}
+    switch (data.status) {
+      case 400:
+        displayErrorMessage("The URL is invalid.");
+        break;
+      case 404:
+        displayErrorMessage(
+          "The juxtapose message was deleted and the images expired."
+        );
+        break;
+      case 500:
+        displayErrorMessage("The API request could not be processed.");
+        break;
+    }
 
     return data.json();
   })
