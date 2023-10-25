@@ -4,13 +4,20 @@
 }
 
 body {
-    background-color: #fff;
+    font-family: sans-serif;
+    background-color: white;
+    color: white;
 }
 
 @media (prefers-color-scheme: dark) {
     body {
-        background-color: #000;
+        background-color: black;
+        color: white;
     }
+}
+
+.error-message {
+    text-align: center;
 }
 
 .image-comparison {
@@ -30,7 +37,6 @@ body {
     overflow: hidden;
     white-space: nowrap;
     background-color: rgba(0, 0, 0, 0.5);
-    font-family: sans-serif;
 }
 
 .before-image {
