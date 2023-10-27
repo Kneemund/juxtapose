@@ -22,34 +22,37 @@ body {
 
 .image-comparison {
     display: flex;
+    overflow: hidden;
     justify-content: center;
     align-items: center;
     width: 100vw;
     height: 100vh;
 }
 
-.before-label, .after-label {
+.before-label,
+.after-label {
     display: none;
     position: absolute;
     overflow: hidden;
     max-width: 50%;
     bottom: 0;
     color: white;
-    overflow: hidden;
     white-space: nowrap;
     background-color: rgba(0, 0, 0, 0.5);
 }
 
 .before-image {
+    justify-content: flex-start;
     left: 0;
 }
 
 .after-label {
+    justify-content: flex-end;
     right: 0;
-    direction: rtl;
 }
 
-.before-label p, .after-label p {
+.before-label p,
+.after-label p {
     padding: 10px;
 }
 
