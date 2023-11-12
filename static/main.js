@@ -170,12 +170,25 @@ async function drawInitialCanvas() {
 
     await Promise.all([leftImage.decode(), rightImage.decode()]);
 
-    // TODO: preserve aspect ratio
-    previewImageWidth = Math.min(Math.min(leftImage.width, rightImage.width), window.innerWidth);
-    previewImageHeight = Math.min(Math.min(leftImage.height, rightImage.height), window.innerHeight);
+    previewImageWidth = Math.min(leftImage.width, rightImage.width);
+    previewImageHeight = Math.min(leftImage.height, rightImage.height);
+
+    if (previewImageWidth > window.innerWidth) {
+        previewImageWidth = window.innerWidth;
+        previewImageHeight = (rightImage.height * previewImageWidth) / rightImage.width;
+    }
+
+    if (previewImageHeight > window.innerHeight) {
+        previewImageHeight = window.innerHeight;
+        previewImageWidth = (rightImage.width * previewImageHeight) / rightImage.height;
+    }
+
+    previewImageHeight = Math.floor(previewImageHeight);
+    previewImageWidth = Math.floor(previewImageWidth);
 
     canvas.width = previewImageWidth;
     canvas.height = previewImageHeight;
+
     ctx = canvas.getContext('2d');
     ctx.fillStyle = 'white';
 
