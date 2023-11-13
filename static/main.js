@@ -70,7 +70,7 @@ const slider = document.querySelector('.image-comparison .slider');
 const sliderLine = document.querySelector('.image-comparison .slider-line');
 const sliderIcon = document.querySelector('.image-comparison .slider-icon');
 
-window.addEventListener('load', () => {
+Promise.all([beforeImage.decode(), afterImage.decode()]).then(() => {
     if (parameters.orientation === "v") {
         slider.setAttribute('orient', 'vertical');
         slider.style.appearance = 'slider-vertical';
