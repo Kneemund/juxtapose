@@ -68,6 +68,8 @@ fetch(`https://api.kneemund.de/juxtapose/url?d=${parameters.data}&m=${parameters
             afterLabelText.textContent = data.right_image_label;
             afterLabel.style.display = 'flex';
         }
+
+        Promise.all([beforeImage.decode(), afterImage.decode()]).then(initialize);
     })
     .catch(() => {
         displayErrorMessage('The API request failed.');
@@ -77,7 +79,7 @@ const slider = document.querySelector('.image-comparison .slider');
 const sliderLine = document.querySelector('.image-comparison .slider-line');
 const sliderIcon = document.querySelector('.image-comparison .slider-icon');
 
-Promise.all([beforeImage.decode(), afterImage.decode()]).then(() => {
+function initialize() {
     if (parameters.orientation === "v") {
         slider.setAttribute('orient', 'vertical');
         slider.style.appearance = 'slider-vertical';
@@ -129,7 +131,7 @@ Promise.all([beforeImage.decode(), afterImage.decode()]).then(() => {
     }
 
     resizeImagesContainer();
-});
+}
 
 slider.addEventListener('input', (e) => {
     const sliderValue = e.target.value + '%';
