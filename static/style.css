@@ -20,13 +20,8 @@ body {
     text-align: center;
 }
 
-.image-comparison {
-    display: flex;
-    overflow: hidden;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
+.images-container {
+    margin: auto;
 }
 
 .before-label,
@@ -34,21 +29,17 @@ body {
     display: none;
     position: absolute;
     overflow: hidden;
-    max-width: 50%;
-    bottom: 0;
     color: white;
     white-space: nowrap;
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.before-image {
-    justify-content: flex-start;
-    left: 0;
-}
-
 .after-label {
     justify-content: flex-end;
-    right: 0;
+}
+
+.before-image {
+    justify-content: flex-start;
 }
 
 .before-label p,
@@ -57,12 +48,9 @@ body {
 }
 
 .image-comparison img {
-    max-width: 100vw;
-    max-height: 100vh;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: left;
 }
 
 .image-comparison .images-container {
@@ -72,26 +60,19 @@ body {
 
 .image-comparison .images-container .before-image {
     position: absolute;
-    top: 0;
-    width: 50%;
 }
 
 .image-comparison .slider {
     position: absolute;
     inset: 0;
     opacity: 0;
-    cursor: col-resize;
     width: 100%;
     height: 100%;
 }
 
 .image-comparison .slider-line {
     position: absolute;
-    height: 100%;
-    width: 4px;
     background: #fff;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 .image-comparison .slider-icon {
@@ -101,5 +82,4 @@ body {
     width: 60px;
     height: 60px;
     color: #fff;
-    transform: translate(-50%, -50%);
 }
