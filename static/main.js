@@ -162,18 +162,16 @@ function resizeImagesContainer() {
     let width = Math.min(afterImage.naturalWidth, beforeImage.naturalWidth);
     let height = Math.min(afterImage.naturalHeight, beforeImage.naturalHeight);
     
-    if (width > window.innerWidth * window.devicePixelRatio) {
-        width = window.innerWidth * window.devicePixelRatio;
-        height = (afterImage.naturalHeight * width) / afterImage.naturalWidth;
+    if (width > window.innerWidth) {
+        height = (height * window.innerWidth) / width;
+        width = window.innerWidth;
     }
     
-    if (height > window.innerHeight * window.devicePixelRatio) {
-        height = window.innerHeight * window.devicePixelRatio;
-        width = (afterImage.naturalWidth * height) / afterImage.naturalHeight;
+    if (height > window.innerHeight) {
+        width = (width * window.innerHeight) / height;
+        height = window.innerHeight;
     }
     
     imagesContainer.style.width = width + 'px';
     imagesContainer.style.height = height + 'px';
 }
-
-window.addEventListener('resize', resizeImagesContainer);
