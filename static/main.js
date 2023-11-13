@@ -1,6 +1,6 @@
-const beforeImage = document.querySelector('.image-comparison .before-image');
-const afterImage = document.querySelector('.image-comparison .after-image');
+let beforeImage, afterImage;
 
+const imagesContainer = document.querySelector('.images-container');
 const beforeLabel = document.querySelector('.image-comparison .before-label');
 const afterLabel = document.querySelector('.image-comparison .after-label');
 
@@ -48,9 +48,17 @@ fetch(`https://api.kneemund.de/juxtapose/url?d=${parameters.data}&m=${parameters
         return data.json();
     })
     .then((data) => {
+        beforeImage = document.createElement("img");
+        beforeImage.className = "before-image";
         beforeImage.src = data.left_image_url;
+
+        afterImage = document.createElement("img");
+        afterImage.className = "after-image";
         afterImage.src = data.right_image_url;
 
+        imagesContainer.insertBefore(beforeImage, beforeLabel);
+        imagesContainer.insertBefore(afterImage, afterLabel);
+        
         if (data.left_image_label) {
             beforeLabelText.textContent = data.left_image_label;
             beforeLabel.style.display = 'flex';
@@ -65,7 +73,6 @@ fetch(`https://api.kneemund.de/juxtapose/url?d=${parameters.data}&m=${parameters
         displayErrorMessage('The API request failed.');
     });
 
-const imagesContainer = document.querySelector('.images-container');
 const slider = document.querySelector('.image-comparison .slider');
 const sliderLine = document.querySelector('.image-comparison .slider-line');
 const sliderIcon = document.querySelector('.image-comparison .slider-icon');
